@@ -1,0 +1,36 @@
+<html dir="rtl">
+        <head>
+        <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script id="customPageScript">    var wpwlOptions = {
+                style: "plain",
+                locale: "ar",
+
+                forceCardHolderEqualsBillingName: true,
+                showCVVHint: true,
+                brandDetection: true,
+                onReady: function () {
+                    $(".wpwl-group-cardNumber").after($(".wpwl-group-brand").detach());
+                    $(".wpwl-group-cvv").after($(".wpwl-group-cardHolder").detach());
+                    var visa = $(".wpwl-brand:first").clone().removeAttr("class").attr("class", "wpwl-brand-card wpwl-brand-custom wpwl-brand-VISA")
+                    var master = $(visa).clone().removeClass("wpwl-brand-VISA").addClass("wpwl-brand-MASTER");
+                    $(".wpwl-brand:first").after($(master)).after($(visa));
+                },
+                onChangeBrand: function (e) {
+                    $(".wpwl-brand-custom").css("opacity", "0.3");
+                    $(".wpwl-brand-" + e).css("opacity", "1");
+                }
+            }
+    
+        </script>
+        <script src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=1AB35F635B365B7A21EDDEAA6DA91165.uat01-vm-tx03"></script>
+        
+        </head>
+        <body>
+        
+        <form action="https://befy.app/api/purchase/template" class="paymentWidgets" data-brands="APPLEPAY"></form>
+
+        </body>
+        </html>
